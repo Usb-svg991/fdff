@@ -9,10 +9,10 @@
   <div class="container">
     <h1>📚 Коллекция книг</h1>
     
-    <!-- Блок ошибок -->
+            Блок ошибок 
     <div id="error-block" class="error" style="display: none;"></div>
     
-    <!-- Форма добавления -->
+            добавляет  
     <form id="book-form" class="form">
       <div class="form-group">
         <label for="title-input">Название книги</label>
@@ -27,10 +27,10 @@
       <button type="submit" id="add-btn" class="btn">➕ Добавить книгу</button>
     </form>
     
-    <!-- Счётчик -->
+             Счётчик 
     <p id="counter-block" class="counter">Всего книг: 0</p>
     
-    <!-- Список книг -->
+                Список книг 
     <div id="cards-container" class="cards"></div>
   </div>
 
