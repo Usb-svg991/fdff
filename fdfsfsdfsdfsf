@@ -1,5 +1,4 @@
-// ==================== КЛАСС КНИГИ ====================
-class Book {
+                    КЛАСС КНИГИ 
   public readonly id: number;
   public readonly title: string;
   public readonly author: string;
@@ -12,7 +11,7 @@ class Book {
     this.createdAt = new Date();
   }
 
-  /** Возвращает строку с полной информацией о книге */
+        Возвращает строку с полной информацией о книге  
   public getFullInfo(): string {
     return `${this.title} — ${this.author} (ID: ${this.id}, добавлено: ${this.createdAt.toLocaleString('ru-RU')})`;
   }
@@ -33,17 +32,17 @@ class BookCollection {
     return newBook;
   }
 
-  /** Возвращает копию массива (защита от мутации) */
+   .. Возвращает копию массива ..
   public getBooks(): ReadonlyArray<Book> {
     return [...this.books];
   }
 
-  /** Текущее количество книг */
+   ..Текущее количество книг..
   public getCount(): number {
     return this.books.length;
   }
 
-  /** Проверка на дубликаты (без учёта регистра) */
+        ... Проверка на дубликаты... 
   public isDuplicate(title: string, author: string): boolean {
     const normTitle = title.toLowerCase().trim();
     const normAuthor = author.toLowerCase().trim();
@@ -55,7 +54,7 @@ class BookCollection {
   }
 }
 
-// ==================== КЛАСС ПРИЛОЖЕНИЯ ====================
+... КЛАСС ПРИЛОЖЕНИЯ ...
 class BookApp {
   private collection: BookCollection;
   private form: HTMLFormElement;
@@ -68,7 +67,7 @@ class BookApp {
   constructor() {
     this.collection = new BookCollection();
     
-    // Получаем элементы (с проверкой типов)
+              ...Получаем элементы ...
     this.form = document.getElementById('book-form') as HTMLFormElement;
     this.titleInput = document.getElementById('title-input') as HTMLInputElement;
     this.authorInput = document.getElementById('author-input') as HTMLInputElement;
@@ -77,10 +76,10 @@ class BookApp {
     this.cardsContainer = document.getElementById('cards-container') as HTMLElement;
 
     this.bindEvents();
-    this.renderUI(); // отрисовать начальное состояние
+    this.renderUI();
   }
 
-  /** Привязка событий */
+  ... Привязка событий ...
   private bindEvents(): void {
     // Отправка формы
     this.form.addEventListener('submit', (e) => {
@@ -89,12 +88,12 @@ class BookApp {
     });
   }
 
-  /** Нормализация строки: убирает лишние пробелы */
+ убирает лишние пробелы 
   private normalize(str: string): string {
     return str.trim().replace(/\s+/g, ' ');
   }
 
-  /** Показать ошибку */
+   ...Показать ошибку при вводе... 
   private showError(message: string): void {
     this.errorBlock.textContent = message;
     this.errorBlock.style.display = 'block';
@@ -104,7 +103,7 @@ class BookApp {
     }, 3000);
   }
 
-  /** Обработчик добавления книги */
+   ... добавления книги ...
   private handleAddBook(): void {
     const rawTitle = this.titleInput.value;
     const rawAuthor = this.authorInput.value;
@@ -112,45 +111,45 @@ class BookApp {
     const normTitle = this.normalize(rawTitle);
     const normAuthor = this.normalize(rawAuthor);
 
-    // Валидация
+ Валидация
     if (!normTitle || !normAuthor) {
-      this.showError('⚠️ Пожалуйста, заполните все поля.');
+      this.showError('Пожалуйста, заполните все поля.');
       return;
     }
 
-    // Проверка на дубликат
+    Проверка на дубликат
     if (this.collection.isDuplicate(normTitle, normAuthor)) {
-      this.showError('⚠️ Такая книга уже есть в списке.');
+      this.showError(' Такая книга уже есть в списке.');
       return;
     }
 
-    // Добавление
+ ...Добавление...
     const addedBook = this.collection.addBook(normTitle, normAuthor);
     if (addedBook) {
-      console.log('✅ Добавлено:', addedBook.getFullInfo());
+      console.log(' Добавлено:', addedBook.getFullInfo());
       
-      // Очистка формы
+    ... Очистка формы...
       this.titleInput.value = '';
       this.authorInput.value = '';
       this.titleInput.focus();
       
-      // Обновление UI
+      ... Обновление UI...
       this.renderUI();
     }
   }
 
-  /** Перерисовка интерфейса */
+ ...Перерисовка интерфейса ...
   private renderUI(): void {
     // Обновляем счётчик
     this.counterBlock.textContent = `Всего книг: ${this.collection.getCount()}`;
     
-    // Очищаем контейнер
+    ...Очищаем контейнер...
     this.cardsContainer.innerHTML = '';
 
-    // Создаём карточки
+    ...Создаём карточки...
     const books = this.collection.getBooks();
     
-    // Сортировка: новые сверху
+...Сортировка: новые сверху...
     [...books].reverse().forEach((book) => {
       const card = document.createElement('div');
       card.className = 'book-card';
@@ -163,7 +162,7 @@ class BookApp {
     });
   }
 
-  /** Экранирование HTML (защита от XSS) */
+  ... Экранирование HTML ...
   private escapeHtml(text: string): string {
     const div = document.createElement('div');
     div.textContent = text;
@@ -171,7 +170,7 @@ class BookApp {
   }
 }
 
-// ==================== ЗАПУСК ПРИЛОЖЕНИЯ ====================
+... ЗАПУСК ПРИЛОЖЕНИЯ ...
 document.addEventListener('DOMContentLoaded', () => {
   new BookApp();
 });
