@@ -156,7 +156,7 @@ class BookApp {
       card.innerHTML = `
         <h3 class="book-title">${this.escapeHtml(book.title)}</h3>
         <p class="book-author">👤 ${this.escapeHtml(book.author)}</p>
-        <p class="book-id">🆔 ${book.id} • 📅 ${book.createdAt.toLocaleDateString('ru-RU')}</p>
+        <p class="book-id"> ${book.id} •  ${book.createdAt.toLocaleDateString('ru-RU')}</p>
       `;
       this.cardsContainer.appendChild(card);
     });
