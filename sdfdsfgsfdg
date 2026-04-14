@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>📚 Коллекция книг</title>
+  <title> Коллекция книг</title>
 </head>
 <body>
   <div class="container">
-    <h1>📚 Коллекция книг</h1>
+    <h1> Коллекция книг</h1>
     
             Блок ошибок 
     <div id="error-block" class="error" style="display: none;"></div>
