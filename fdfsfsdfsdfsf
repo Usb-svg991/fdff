@@ -11,18 +11,18 @@
     this.createdAt = new Date();
   }
 
-        Возвращает строку с полной информацией о книге  
+        Возвращает  информацию о книге  
   public getFullInfo(): string {
     return `${this.title} — ${this.author} (ID: ${this.id}, добавлено: ${this.createdAt.toLocaleString('ru-RU')})`;
   }
 }
 
-// ==================== КЛАСС ХРАНИЛИЩА ====================
+ /////КЛАСС ХРАНИЛИЩА
 class BookCollection {
   private books: Book[] = [];
   private nextId: number = 1;
 
-  /** Добавляет книгу или возвращает null, если дубликат */
+   Добавляет книгу или возвращает null, если дубликат 
   public addBook(title: string, author: string): Book | null {
     if (this.isDuplicate(title, author)) {
       return null;
@@ -88,7 +88,7 @@ class BookApp {
     });
   }
 
- убирает лишние пробелы 
+... убирает лишние пробелы ...
   private normalize(str: string): string {
     return str.trim().replace(/\s+/g, ' ');
   }
@@ -111,7 +111,7 @@ class BookApp {
     const normTitle = this.normalize(rawTitle);
     const normAuthor = this.normalize(rawAuthor);
 
- Валидация
+ ...Валидация...
     if (!normTitle || !normAuthor) {
       this.showError('Пожалуйста, заполните все поля.');
       return;
